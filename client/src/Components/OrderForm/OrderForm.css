@@ -1,0 +1,81 @@
+.onePageFrame {
+    background-color: black;
+    padding: 15px 20px 20px 20px;
+}
+
+.onePageFrame h1 {
+    color: #fac564;
+    margin: 0;
+    font-size: 20px;
+}
+
+.contact-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.delivery-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.delivery-input-name-line {
+    display: flex;
+    flex-direction: row;
+}
+
+.onePageFrame input {
+    height: 40px;
+    border: 0;
+    border-radius: 2px;
+    margin: 10px 0;
+    background-color: white;
+    flex-grow: 1;
+    min-width: 50px;
+}
+
+.popup-content {
+    margin: auto;
+    width: 50%;
+    border: #fac564 solid 1px;
+    animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+    }
+
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.onePageFrame .closeButton {
+    color: #fac564;
+    font-size: 35px;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: black;
+    height: 35px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.onePageFrame .closeButton:hover {
+    color: rgb(253, 67, 67);
+    transition: 0.7s;
+}

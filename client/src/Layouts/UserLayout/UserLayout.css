@@ -1,0 +1,155 @@
+.Layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.Layout nav {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #121618;
+    font-size: 1rem;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.Layout ul {
+    display: flex;
+}
+
+.Layout .outlet {
+    margin-top: 80px;
+}
+
+.Layout .container {
+    display: flex;
+    align-items: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 200px;
+    padding-left: 200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.Layout .link {
+    text-decoration: none;
+    transition: .3s all ease;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.Layout .link:hover {
+    transition: .3s all ease;
+    color: #fac564;
+}
+
+.Layout .logo {
+    width: 4rem;
+}
+
+.footer {
+    display: flex;
+    background: #000;
+    padding: 30px 20px;
+    font-family: 'Play', sans-serif;
+    margin-top: auto;
+}
+
+.footer .row {
+    width: 100%;
+    margin: 1% 0%;
+    padding: 0.6% 0%;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.footer .footer-social {
+    font-size: 1.6em;
+    padding-left: 60px;
+}
+
+.footer .footer-social a {
+    margin-right: 25px;
+}
+
+.footer .row a {
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+}
+
+.footer .row a:hover {
+    color: #fff;
+}
+
+.footer .row ul {
+    width: 100%;
+}
+
+.footer .row ul li {
+    display: inline-block;
+    margin: 0px 20px;
+}
+
+.footer .row a i {
+    font-size: 2em;
+    margin: 0% 1%;
+}
+
+.footer-content {
+    width: 50%;
+}
+
+.footer-info {
+    width: 50%;
+    padding: 0 60px;
+}
+
+.footer-info p {
+    color: gray;
+}
+
+.footer-info .logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-info a {
+    display: flex;
+    align-items: center;
+}
+
+.footer-info img {
+    width: 60px;
+    max-height: 61px;
+}
+
+
+@media (max-width:720px) {
+    .footer {
+        text-align: left;
+        padding: 5%;
+    }
+
+    .footer .row ul li {
+        display: block;
+        margin: 10px 0px;
+        text-align: left;
+    }
+
+    .footer .row a i {
+        margin: 0% 3%;
+    }
+}

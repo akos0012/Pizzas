@@ -1,0 +1,116 @@
+.pizza-img {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.pizza-img img {
+    object-fit: cover;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.pizza-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    padding: 1.5rem;
+    overflow: auto;
+    position: relative;
+}
+
+span.dollar {
+    font-weight: normal;
+}
+
+.pizza-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(0, 0, 0, 0.7);
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+    min-height: 300px;
+}
+
+.pizza-name {
+    font-size: 20px;
+    text-align: left;
+    color: #fff;
+    font-family: "Josefin Sans", Arial, sans-serif;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.pizza-description {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: gray;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.cunter-row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.pizza-price {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fac564;
+    font-weight: 300;
+    font-size: 20px;
+    margin: 0;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.counter input {
+    width: 50px;
+    border: 0;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    background: #d6d7d8;
+    color: black;
+    appearance: none;
+    outline: 0;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: inset 0 0 10px #414140;
+    cursor: default;
+}
+
+.counter span {
+    display: block;
+    font-size: 25px;
+    padding: 0 10px;
+    cursor: pointer;
+    color: #fac564;
+    user-select: none;
+}
+
+@media (min-width: 1300px) {
+    /* .pizza-card {
+        max-height: 20em;
+    } */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

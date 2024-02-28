@@ -1,0 +1,242 @@
+.spices-background {
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 750px;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    filter: brightness(0.7);
+}
+
+.img-container {
+    position: relative;
+    text-align: center;
+    font-family: cursive;
+    color: whitesmoke;
+    line-height: 0;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.subheading {
+    color: #fac564;
+    line-height: 1.5;
+    font-size: 30px;
+    cursor: default;
+    font-family: "Nothing You Could Do", cursive;
+}
+
+
+.slider {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 6vw;
+}
+
+.slider-inner h1 {
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    color: #fff;
+    line-height: 1.5;
+    font-weight: normal;
+    letter-spacing: 1px;
+    cursor: default;
+    font-family: "Josefin Sans", Arial, sans-serif;
+}
+
+.slider p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: white;
+    cursor: default;
+}
+
+.slider-inner button {
+    background: transparent;
+    color: white;
+    height: 3.5rem;
+    width: 9rem;
+    border: white solid 2px;
+    font-size: 1rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition: 0.5s;
+}
+
+.slider-inner button:hover {
+    background-color: #fac564;
+    border: #fac564 solid 2px;
+    color: black;
+    transition: 0.7s;
+}
+
+.intro {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    min-height: 150px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    padding-left: 100px;
+    padding-right: 70px;
+    flex-grow: 1;
+}
+
+.info-inner {
+    display: flex;
+    flex-direction: row;
+    margin: 50px 10px 30px 10px;
+}
+
+.info-inner .icon {
+    color: #fac564;
+    font-size: large;
+    margin: 0 10px;
+    position: relative;
+    top: -7px;
+}
+
+.info-inner .text h3 {
+    margin-top: 0;
+    font-family: "Josefin Sans", Arial, sans-serif;
+    font-size: 16px;
+}
+
+.info-inner .text p {
+    font-size: 15px;
+    color: gray;
+}
+
+.social {
+    background-color: #fac564;
+    width: 35%;
+    display: grid;
+    align-content: space-around;
+}
+
+.social ul {
+    list-style-type: none;
+}
+
+.social li {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.social .icon {
+    font-size: larger;
+}
+
+.about {
+    display: flex;
+    flex-direction: row;
+    height: 410px;
+}
+
+.about .restaurant-img {
+    object-fit: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    filter: blur(0.4px);
+    filter: brightness(0.9);
+}
+
+.about-inner {
+    width: 50%;
+}
+
+.about .text h2 {
+    text-transform: uppercase;
+    font-size: 30px;
+    color: white;
+}
+
+.about .text p {
+    color: gray;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.about .text {
+    font-family: "Poppins", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 70px;
+}
+
+.flaticon-pizza {
+    font-family: "Josefin Sans", Arial, sans-serif !important;
+    color: #fac564 !important;
+}
+
+.pizza-logo {
+    width: 26px;
+}
+
+.service {
+    background: url("../../../public/img/food.png") repeat;
+    width: 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.service .title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.service .media-body {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 150px;
+    justify-content: center;
+}
+
+.service h2 {
+    text-transform: uppercase;
+    font-size: 30px;
+    color: black;
+    font-weight: 400;
+}
+
+.service p {
+    font-weight: 300;
+    color: #5c3d03;
+    line-height: 1.8;
+}
+
+.service .title p {
+    width: 40rem
+}
+
+.media-body h3 {
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.media-body .icon img {
+    width: 6rem;
+    border: #6c4703 solid 1px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.media-body-innner {
+    padding: 0 20px;
+}

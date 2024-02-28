@@ -1,13 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import ErrorPage from "./Pages/ErrorPage";
+import PizzaList from "./Pages/Menu";
+import Layout from "./Layouts/UserLayout";
+import Cart from "./Pages/Cart";
+import Home from "./Pages/Home";
+
+import PizzaCreator from './Pages/PizzaCreator';
+
+import './index.css';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/menu",
+        element: <PizzaList />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <PizzaCreator />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
