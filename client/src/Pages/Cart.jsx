@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 import OrderTable from "../Components/OrderTable";
 import OrderForm from "../Components/OrderForm";
 import Popup from 'reactjs-popup';
 import Loading from "../Components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const getPizzaByID = (id) => {
     return fetch(`/api/pizza/${id}`).then((res) => res.json());
@@ -28,9 +31,14 @@ const getOrders = async () => {
 }
 
 const Cart = () => {
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(true);
+    const [modalLoading, setModalLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const [orders, setOrders] = useState([]);
     const [openOrderPopup, setOpenOrderPopup] = useState(false);
+
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -73,19 +81,19 @@ const Cart = () => {
 
     const handleOrderButton = () => setOpenOrderPopup(true);
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
+    const onSubmit = async (formData) => {
+        setModalLoading(true);
+
         const contact = {
-            email: formData.get('email'),
-            phone: formData.get('phone')
+            email: formData.email,
+            phone: formData.phone
         };
         const delivery = {
-            country: formData.get('country_region'),
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            address: formData.get('address'),
-            company: formData.get('company')
+            country: formData.country,
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            address: formData.address,
+            company: formData.company
         };
 
         const orderData = {
@@ -99,13 +107,27 @@ const Cart = () => {
 
 
         try {
-            await createOrder(orderData);
-            setOrders([]);
-            clearCartContect();
-            closeModal();
+            const response = await createOrder(orderData);
+            if (response.ok) {
+                setOrders([]);
+                clearCartContect();
+                setSuccess(true);
+                toast.success("Order sent successfully!");
+                //closeModal();
+            } else {
+                console.error('Error creating order:', response.statusText);
+                toast.error("Failed to send order, try again later");
+            }
         } catch (error) {
             console.error('Error creating order:', error);
+            toast.error("Failed to send order, try again later");
+        } finally {
+            setModalLoading(false);
         }
+    }
+
+    const handleBackToMenu = () => {
+        navigate("/menu");
     }
 
     const handleRemoveOrder = (id) => {
@@ -133,8 +155,9 @@ const Cart = () => {
                 removeButton={handleRemoveOrder}
             />
             <Popup open={openOrderPopup} onClose={closeModal} position={"center center"} closeOnDocumentClick={false}>
-                <OrderForm onSubmit={onSubmit} closeModal={closeModal} />
+                <OrderForm onSubmit={onSubmit} loading={modalLoading} closeModal={closeModal} handleBackToMenu={handleBackToMenu} success={success} />
             </Popup>
+            <ToastContainer />
         </div>
     );
 }

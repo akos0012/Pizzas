@@ -1,6 +1,7 @@
 .onePageFrame {
     background-color: black;
     padding: 15px 20px 20px 20px;
+    margin: auto;
 }
 
 .onePageFrame h1 {
@@ -9,11 +10,7 @@
     font-size: 20px;
 }
 
-.contact-input {
-    display: flex;
-    flex-direction: column;
-}
-
+.contact-input,
 .delivery-input {
     display: flex;
     flex-direction: column;
@@ -36,7 +33,7 @@
 
 .popup-content {
     margin: auto;
-    width: 50%;
+    width: 60%;
     border: #fac564 solid 1px;
     animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
@@ -77,5 +74,52 @@
 
 .onePageFrame .closeButton:hover {
     color: rgb(253, 67, 67);
+    transition: 0.7s;
+}
+
+.orderSuccess {
+    display: flex;
+    justify-content: center;
+}
+
+.check-mark {
+    width: 350px;
+    height: auto;
+}
+
+.successMessage {
+    border-left: #fac564 solid 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 30px 30px 0;
+    padding-left: 35px;
+    color: #fac564;
+}
+
+.successMessage h2 {
+    font-size: 30px;
+    margin-bottom: 0;
+    font-family: "Josefin Sans", Arial, sans-serif;
+    ;
+}
+
+.back-to-menu-button {
+    text-align: center;
+    background-color: #3c3c3c;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    font-weight: bolder;
+    height: 55px;
+    border-radius: 2px;
+    transition: 0.5s;
+    margin-bottom: 20px;
+    padding: 0 50px;
+}
+
+.back-to-menu-button:hover {
+    background-color: #6e5218;
     transition: 0.7s;
 }
