@@ -1,0 +1,29 @@
+.dropdown {
+    position: fixed;
+    z-index: 10;
+    top: 80px;
+    background-color: #121618c9;
+    width: 100%;
+}
+
+.dropdown .link {
+    margin-left: 40px;
+    list-style-type: none;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown .link span {
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.dropdown li:active {
+    background-color: #fac564d9;
+}
+
+.dropdown ul {
+    margin: 0;
+    padding: 0;
+}

@@ -58,15 +58,11 @@
 
 .content-center {
     display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 250px;
-}
-
-.content-center-inner {
-    display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 250px;
 }
 
 .content-center h2 {
@@ -84,7 +80,7 @@
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
-    width: 35rem;
+    max-width: 35rem;
 }
 
 /* @keyframes appear {

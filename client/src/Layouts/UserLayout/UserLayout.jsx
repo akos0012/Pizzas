@@ -1,16 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Outlet, Link, useLocation } from "react-router-dom";
 import { Twitter, Facebook, Instagram } from "react-bootstrap-icons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Dropdown from "../../Components/Dropdown";
 
 import "./UserLayout.css";
 
 const UserLayout = () => {
-
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
     const location = useLocation();
+
+    const toggleDropdownVisibility = () => {
+        setIsDropdownVisible(!isDropdownVisible);
+    };
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setIsDropdownVisible(false);
     }, [location]);
 
     return (
@@ -19,7 +26,8 @@ const UserLayout = () => {
                 <nav>
                     <div className="container">
                         <img src="/img/favicon.png" alt="pizza logo" className="logo" />
-                        <ul>
+                        <button className="dropdown-icon-button hide-dropdown" type="button" onClick={toggleDropdownVisibility}>☰</button>
+                        <ul className="nav-menu">
                             <li>
                                 <Link to="/" className="link">Home</Link>
                             </li>
@@ -32,6 +40,9 @@ const UserLayout = () => {
                         </ul>
                     </div>
                 </nav>
+                <div className="hide-dropdown">
+                    <Dropdown isVisible={isDropdownVisible} />
+                </div>
                 <div className="outlet">
                     <Outlet />
                 </div>

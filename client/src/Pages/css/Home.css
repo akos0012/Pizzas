@@ -29,11 +29,16 @@
 
 
 .slider {
+    display: flex;
+    justify-content: center;
+    width: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 6vw;
+    top: 30%
+}
+
+.slider-inner {
+    max-width: 450px;
+    margin: 0 20px;
 }
 
 .slider-inner h1 {
@@ -84,15 +89,13 @@
     display: flex;
     flex-direction: row;
     background-color: black;
-    padding-left: 100px;
-    padding-right: 70px;
     flex-grow: 1;
 }
 
 .info-inner {
     display: flex;
     flex-direction: row;
-    margin: 50px 10px 30px 10px;
+    margin: 40px 10px 10px 10px;
 }
 
 .info-inner .icon {
@@ -118,11 +121,12 @@
     background-color: #fac564;
     width: 35%;
     display: grid;
-    align-content: space-around;
+    align-content: center;
 }
 
 .social ul {
     list-style-type: none;
+    display: flex;
 }
 
 .social li {
@@ -137,10 +141,11 @@
 .about {
     display: flex;
     flex-direction: row;
-    height: 410px;
+    min-height: 410px;
 }
 
 .about .restaurant-img {
+    position: absolute;
     object-fit: cover;
     background-repeat: no-repeat;
     width: 100%;
@@ -150,6 +155,7 @@
 }
 
 .about-inner {
+    position: relative;
     width: 50%;
 }
 
@@ -157,6 +163,7 @@
     text-transform: uppercase;
     font-size: 30px;
     color: white;
+    font-weight: normal;
 }
 
 .about .text p {
@@ -185,10 +192,11 @@
 .service {
     background: url("../../../public/img/food.png") repeat;
     width: 100%;
-    height: 700px;
+    min-height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 50px 0;
 }
 
 .service .title {
@@ -222,7 +230,8 @@
 }
 
 .service .title p {
-    width: 40rem
+    max-width: 40rem;
+    margin: 0 20px;
 }
 
 .media-body h3 {
@@ -239,4 +248,68 @@
 
 .media-body-innner {
     padding: 0 20px;
+}
+
+@media (min-width:1450px) {
+    .slider-inner {
+        max-width: 550px;
+    }
+}
+
+@media (max-width:1250px) {
+    .service .media-body {
+        padding: 0 35px;
+    }
+}
+
+@media (max-width:860px) {
+    .intro {
+        flex-direction: column;
+    }
+
+    .social {
+        width: 100%;
+    }
+
+    .about {
+        flex-direction: column;
+    }
+
+    .about-inner {
+        width: 100%;
+    }
+
+    .about .restaurant-img {
+        position: unset;
+        height: 350px;
+    }
+
+    .about .text {
+        padding: 10px 70px 20px 70px;
+    }
+
+    .service .media-body {
+        flex-direction: column;
+    }
+
+    .info {
+        flex-direction: column;
+        padding: 25px 10px 10px 10px;
+    }
+
+    .info-inner {
+        margin: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .about .text {
+        padding: 10px 20px 20px 20px;
+    }
+}
+
+@media (max-width: 310px) {
+    .slider {
+        top: 15%
+    }
 }

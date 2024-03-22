@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Poppins", Arial, sans-serif;
-  min-width: 980px;
+  /* min-width: 980px; */
 
   background-image: url(../public/img/bg.jpg);
   background-repeat: no-repeat;

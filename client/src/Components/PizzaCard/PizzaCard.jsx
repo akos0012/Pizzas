@@ -90,7 +90,7 @@ const PizzaCard = ({ pizzaData, setRowReverse }) => {
                 <h1 className="pizza-name">{pizzaData.name}</h1>
                 <p className="pizza-description">{pizzaData.description}</p>
                 {/* <p className="pizza-ingredients">{pizzaData.ingredients.join(", ")}</p> */}
-                <div className="cunter-row">
+                <div className="counter-row">
                     <p className="pizza-price"><span className="dollar">$</span>{pizzaData.price.toFixed(2)}</p>
                     <div className="counter">
                         <span className="down" onClick={decreaseCount}>-</span>

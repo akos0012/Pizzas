@@ -5,6 +5,7 @@ import "./css/Menu.css"
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import animations from "../Animations"
+import Loading from "../Components/Loading";
 
 const fetchPizzas = () => {
     return fetch("/api/pizzas").then((res) => res.json());
@@ -26,6 +27,7 @@ const useSectionAnimation = (threshold) => {
 const PizzaList = () => {
     const [pizzas, setPizzas] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const [containerRef, animateContainer] = useSectionAnimation(0);
     const [contentRef, animateContent] = useSectionAnimation(0.2);
@@ -40,6 +42,7 @@ const PizzaList = () => {
             .then((pizzas) => {
                 setPizzas(pizzas);
                 filterCartContent(pizzas);
+                setLoading(false);
             })
     }, []);
 
@@ -56,18 +59,20 @@ const PizzaList = () => {
                 </motion.div>
             </div>
             <motion.div className="content-center" ref={contentRef} initial="hidden" animate={animateContent} variants={fadeInFromBelow} transition={{ duration: 0.5 }}>
-                <div className="content-center-inner">
-                    <h2 variants={fadeInFromBelow}>Our menu</h2>
-                    <p variants={fadeInFromBelow} transition={{ delay: 0.5 }}>Our menu invites you on a journey of tantalizing flavors and culinary delights, where every dish tells a story of passion and craftsmanship.</p>
-                </div>
+                <h2 variants={fadeInFromBelow}>Our menu</h2>
+                <p variants={fadeInFromBelow} transition={{ delay: 0.5 }}>Our menu invites you on a journey of tantalizing flavors and culinary delights, where every dish tells a story of passion and craftsmanship.</p>
             </motion.div>
-            <div className="menu-row">
-                {
-                    pizzas.map((pizza, index) => {
-                        const setRowReverse = Math.floor(index / 3) % 2 !== 0;
-                        return <PizzaCard pizzaData={pizza} key={pizza._id} setRowReverse={setRowReverse} />
-                    })}
-            </div>
+            {loading ? (
+                <Loading />
+            ) : (
+                <div className="menu-row">
+                    {
+                        pizzas.map((pizza, index) => {
+                            const setRowReverse = Math.floor(index / 3) % 2 !== 0;
+                            return <PizzaCard pizzaData={pizza} key={pizza._id} setRowReverse={setRowReverse} />
+                        })}
+                </div>
+            )}
         </div>
     );
 }

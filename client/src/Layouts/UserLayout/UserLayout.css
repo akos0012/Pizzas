@@ -12,18 +12,14 @@
     background-color: #121618;
     font-size: 1rem;
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
     width: 100%;
     top: 0;
     z-index: 100;
 }
 
-.Layout ul {
+.Layout .nav-menu {
     display: flex;
-}
-
-.Layout .outlet {
-    margin-top: 80px;
 }
 
 .Layout .container {
@@ -31,14 +27,14 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding-right: 200px;
-    padding-left: 200px;
+    padding-right: 15%;
+    padding-left: 15%;
     margin-right: auto;
     margin-left: auto;
 }
 
 
-.Layout .link {
+.Layout .nav-menu .link {
     text-decoration: none;
     transition: .3s all ease;
     color: rgba(255, 255, 255, 0.7);
@@ -48,13 +44,31 @@
     padding-right: 20px;
 }
 
-.Layout .link:hover {
+.Layout .nav-menu .link:hover {
     transition: .3s all ease;
     color: #fac564;
 }
 
 .Layout .logo {
     width: 4rem;
+}
+
+.Layout .dropdown-icon-button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 30px;
+    transition: .3s all ease;
+}
+
+.Layout .dropdown-icon-button:hover {
+    transition: .3s all ease;
+    color: #fac564;
+}
+
+.Layout .hide-dropdown {
+    display: none;
 }
 
 .footer {
@@ -123,6 +137,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .footer-info a {
@@ -135,6 +150,17 @@
     max-height: 61px;
 }
 
+@media (max-width:1200px) {
+    .footer-info img {
+        width: 45px;
+    }
+}
+
+@media (max-width:920px) {
+    .footer-info .logo {
+        justify-content: flex-start;
+    }
+}
 
 @media (max-width:720px) {
     .footer {
@@ -151,4 +177,35 @@
     .footer .row a i {
         margin: 0% 3%;
     }
+
+    .footer .footer-social {
+        padding-left: 40px;
+    }
+
+    .footer-info {
+        padding: 0px 40px;
+    }
+}
+
+@media (max-width:600px) {
+    .footer-info img {
+        width: 35px;
+    }
+
+    .footer .footer-social {
+        padding-left: 10px;
+    }
+
+    .footer .row ul {
+        padding-left: 10px;
+    }
+
+    .Layout .nav-menu {
+        display: none;
+    }
+
+    .Layout .hide-dropdown {
+        display: block;
+    }
+
 }

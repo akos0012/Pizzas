@@ -113,7 +113,6 @@ const Cart = () => {
                 clearCartContect();
                 setSuccess(true);
                 toast.success("Order sent successfully!");
-                //closeModal();
             } else {
                 console.error('Error creating order:', response.statusText);
                 toast.error("Failed to send order, try again later");

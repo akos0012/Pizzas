@@ -4,6 +4,7 @@
     text-align: left;
     font-size: 14px;
     background-color: #121618bd;
+    padding: 0 30px;
 }
 
 .page-header {
@@ -17,7 +18,7 @@
 
 .order-table td,
 .order-table th {
-    padding: 26px 30px 26px 30px;
+    padding: 26px 0;
 }
 
 .product-info {
@@ -36,10 +37,12 @@
 
 .product-name {
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .product-ingredients {
     color: gray;
+    margin-bottom: 10px;
 }
 
 .product-price {
@@ -87,13 +90,14 @@
 }
 
 .quantity-remove {
-    margin: 10px auto 0;
+    margin: 10px 0 0;
     padding: 0;
     color: #fac564;
     background: none;
     border: none;
     cursor: pointer;
     display: block;
+    width: 100%;
 }
 
 .cart-recap {
@@ -179,7 +183,7 @@
     border: none;
     font-size: 18px;
     font-weight: bolder;
-    height: 55px;
+    min-height: 55px;
     border-radius: 2px;
     font-family: Arial, Helvetica, sans-serif;
     transition: 0.5s;
@@ -190,4 +194,56 @@
 .empty-state-button:hover {
     background-color: #6e5218;
     transition: 0.7s;
+}
+
+@media (max-width:960px) {
+    .cart-wrapper {
+        flex-direction: column;
+    }
+
+    .cart-recap {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+
+@media (max-width:510px) {
+    .order-table thead {
+        display: none;
+    }
+
+    .order-table tr {
+        display: flex;
+        flex-direction: column;
+        margin: 26px 0;
+    }
+
+    .order-table td {
+        padding: 0;
+    }
+
+    .product-price {
+        margin-bottom: 10px;
+    }
+
+    .product-total {
+        display: none;
+    }
+
+    .quantity-selector {
+        width: 100%;
+        max-width: 130px;
+        margin-right: 20px;
+    }
+
+    .quantity-remove {
+        display: unset;
+        width: unset;
+    }
+
+    .item-quantity {
+        text-align: left;
+    }
 }

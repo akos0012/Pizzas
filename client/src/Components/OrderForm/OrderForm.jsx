@@ -36,7 +36,9 @@ const OrderForm = ({ onSubmit, closeModal, loading, success, handleBackToMenu })
                 <Loading />
             ) : success ? (
                 <div className="orderSuccess">
-                    <img src="/img/check-mark.png" alt="check-mark" className="check-mark" />
+                    <div className="check-mark">
+                        <img src="/img/check-mark.png" alt="check-mark" className="check-mark-image" />
+                    </div>
                     <div className="successMessage">
                         <h2>Your Order Has Been Received!</h2>
                         <p>Thank you for choosing our website, we will prepare your food soon!</p>

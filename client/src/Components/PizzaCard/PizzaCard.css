@@ -30,7 +30,7 @@ span.dollar {
     position: relative;
     display: flex;
     flex-direction: row;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
     min-height: 300px;
@@ -57,8 +57,9 @@ span.dollar {
     word-wrap: break-word;
 }
 
-.cunter-row {
+.counter-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
@@ -103,10 +104,19 @@ span.dollar {
     user-select: none;
 }
 
-@media (min-width: 1300px) {
-    /* .pizza-card {
-        max-height: 20em;
-    } */
+@media (max-width: 1200px) {
+    .pizza-card {
+        flex-direction: row-reverse !important;
+        flex: none;
+        max-width: none;
+        min-height: 220px;
+        margin: 10px 0 10px 0;
+        width: 100%;
+    }
+
+    .pizza-img {
+        left: 0 !important;
+    }
 }
 
 /* Chrome, Safari, Edge, Opera */
