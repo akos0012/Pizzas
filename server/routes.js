@@ -5,16 +5,6 @@ const AllergenModel = require("./db/allergen.model");
 const OrderModel = require("./db/order.model");
 const ImageModel = require("./db/image.model");
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now())
-//     }
-// });
-// const upload = multer({ storage: storage });
-
 //Pizza
 
 router.get('/pizzas', async (req, res) => {
