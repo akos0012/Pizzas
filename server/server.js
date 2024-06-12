@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
-const { MONGO_URL, PORT = 8080 } = process.env;
+const { MONGO_URL, PORT } = process.env;
 
 if (!MONGO_URL) {
     console.error("Missing MONGO_URL environment variable");
