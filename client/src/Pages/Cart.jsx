@@ -6,13 +6,16 @@ import OrderForm from "../Components/OrderForm";
 import Popup from 'reactjs-popup';
 import Loading from "../Components/Loading";
 import { useNavigate } from "react-router-dom";
+import config from "../config";
+const URL = config.API_BASE_URL;
+
 
 const getPizzaByID = (id) => {
-    return fetch(`/api/pizza/${id}`).then((res) => res.json());
+    return fetch(`${URL}/api/pizza/${id}`).then((res) => res.json());
 }
 
 const createOrder = (order) => {
-    return fetch('/api/order', {
+    return fetch(`${URL}/api/order`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",

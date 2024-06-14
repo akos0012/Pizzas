@@ -1,7 +1,10 @@
 import { useState, useEffect, Fragment } from "react";
+import config from "../config";
+const URL = config.API_BASE_URL;
+
 
 const createPizza = (pizza) => {
-    return fetch("/api/pizza", {
+    return fetch(`${URL}/api/pizza`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -11,7 +14,7 @@ const createPizza = (pizza) => {
 }
 
 const fetchAllergen = () => {
-    return fetch("/api/allergens").then((res) => res.json());
+    return fetch(`${URL}/api/allergens`).then((res) => res.json());
 }
 
 const PizzaCreator = () => {

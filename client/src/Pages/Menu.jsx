@@ -6,9 +6,11 @@ import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 import animations from "../Animations"
 import Loading from "../Components/Loading";
+import config from "../config";
+const URL = config.API_BASE_URL;
 
 const fetchPizzas = () => {
-    return fetch("/api/pizzas").then((res) => res.json());
+    return fetch(`${URL}/api/pizzas`).then((res) => res.json());
 }
 
 const useSectionAnimation = (threshold) => {
