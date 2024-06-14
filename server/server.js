@@ -13,20 +13,13 @@ if (!MONGO_URL) {
 const app = express();
 app.use(express.json({ limit: "25mb" }));
 
-const allowedOrigins = [
-    "https://pizzas-n8cl.onrender.com"
-];
+const corsOptions = {
+    origin: "*",
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
 
-app.use(cors({
-    credentials: true,
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    }
-}));
+app.use(cors(corsOptions));
 
 app.use('/api', routes);
 
