@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
-import { toast, ToastContainer } from 'react-toastify';
+import {useState, useEffect} from "react";
+import {toast, ToastContainer} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css"
 import OrderTable from "../Components/OrderTable";
 import OrderForm from "../Components/OrderForm";
 import Popup from 'reactjs-popup';
 import Loading from "../Components/Loading";
-import { useNavigate } from "react-router-dom";
-import config from "../config";
-const URL = config.API_BASE_URL;
+import {useNavigate} from "react-router-dom";
 
 
 const getPizzaByID = (id) => {
-    return fetch(`${URL}/api/pizza/${id}`).then((res) => res.json());
+    return fetch(`/api/pizzas/${id}`).then((res) => res.json());
 }
 
 const createOrder = (order) => {
-    return fetch(`${URL}/api/order`, {
+    return fetch(`/api/orders`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -28,7 +26,7 @@ const getOrders = async () => {
     const cartContent = getCartContent();
     const pizzaPromises = cartContent.map(async (c) => {
         const pizza = await getPizzaByID(c.id);
-        return { ...pizza, quantity: c.quantity };
+        return {...pizza, quantity: c.quantity};
     });
     return await Promise.all(pizzaPromises);
 }
@@ -62,8 +60,8 @@ const Cart = () => {
 
     const decreaseQuantity = (id) => {
         const updatedOrders = orders.map(order => {
-            if (order._id === id && order.quantity > 0) {
-                return { ...order, quantity: order.quantity - 1 };
+            if (order.id === id && order.quantity > 0) {
+                return {...order, quantity: order.quantity - 1};
             }
             return order;
         });
@@ -73,8 +71,8 @@ const Cart = () => {
 
     const increaseQuantity = (id) => {
         const updatedOrders = orders.map(order => {
-            if (order._id === id) {
-                return { ...order, quantity: order.quantity + 1 };
+            if (order.id === id) {
+                return {...order, quantity: order.quantity + 1};
             }
             return order;
         });
@@ -102,18 +100,17 @@ const Cart = () => {
         const orderData = {
             contact,
             delivery,
-            orders: orders.map((order) => ({
-                order: order._id,
+            orderItems: orders.map((order) => ({
+                pizzaId: order.id,
                 quantity: order.quantity
             }))
         };
-
 
         try {
             const response = await createOrder(orderData);
             if (response.ok) {
                 setOrders([]);
-                clearCartContect();
+                clearCartContent();
                 setSuccess(true);
                 toast.success("Order sent successfully!");
             } else {
@@ -136,16 +133,16 @@ const Cart = () => {
         removeOrderByID(id);
 
         setOrders((orders) => {
-            return orders.filter((order) => order._id !== id);
+            return orders.filter((order) => order.id !== id);
         });
     };
 
     const updateCartContent = (content) => {
-        const updatedCartContent = content.map(order => ({ id: order._id, quantity: order.quantity }));
+        const updatedCartContent = content.map(order => ({id: order.id, quantity: order.quantity}));
         setCartContent(updatedCartContent);
     };
 
-    if (loading) return <Loading />
+    if (loading) return <Loading/>
 
     return (
         <div>
@@ -157,9 +154,10 @@ const Cart = () => {
                 removeButton={handleRemoveOrder}
             />
             <Popup open={openOrderPopup} onClose={closeModal} position={"center center"} closeOnDocumentClick={false}>
-                <OrderForm onSubmit={onSubmit} loading={modalLoading} closeModal={closeModal} handleBackToMenu={handleBackToMenu} success={success} />
+                <OrderForm onSubmit={onSubmit} loading={modalLoading} closeModal={closeModal}
+                           handleBackToMenu={handleBackToMenu} success={success}/>
             </Popup>
-            <ToastContainer />
+            <ToastContainer/>
         </div>
     );
 }
@@ -172,7 +170,7 @@ function removeOrderByID(id) {
     localStorage.setItem("cart", JSON.stringify(filteredContent));
 }
 
-function clearCartContect() {
+function clearCartContent() {
     localStorage.clear("cart");
 }
 

@@ -1,20 +1,14 @@
-import { useState, useEffect, Fragment } from "react";
-import config from "../config";
-const URL = config.API_BASE_URL;
-
+import {useState, useEffect, Fragment} from "react";
 
 const createPizza = (pizza) => {
-    return fetch(`${URL}/api/pizza`, {
+    return fetch(`/api/pizzas`, {
         method: "POST",
-        headers: {
-            "Content-type": "application/json",
-        },
-        body: JSON.stringify(pizza),
-    })//.then((res) => res.json());
+        body: pizza,
+    });
 }
 
 const fetchAllergen = () => {
-    return fetch(`${URL}/api/allergens`).then((res) => res.json());
+    return fetch(`/api/allergens`).then((res) => res.json());
 }
 
 const PizzaCreator = () => {
@@ -41,27 +35,14 @@ const PizzaCreator = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
-        const ingredients = formData.get("ingredients").split(", ");
-        let img = formData.get("img");
-        img = img.name ? await convertToBase64(img) : null;
+        selectedAllergens.forEach((id) => formData.append("allergenIds", id));
 
-        const pizzaData = {};
-        formData.forEach((value, key) => {
-            pizzaData[key] = value;
-        });
-
-        pizzaData.img = img;
-        pizzaData.ingredients = ingredients;
-        pizzaData.allergens = selectedAllergens;
-
-        createPizza(pizzaData);
-        console.log(pizzaData);
-        //alert(`${pizzaData.name} added`);
-
+        await createPizza(formData);
     }
 
     return (
-        <form encType="multipart/form-data" onSubmit={onSubmit} style={{ width: "50%", color: "white", display: 'flex', flexDirection: 'column' }}>
+        <form encType="multipart/form-data" onSubmit={onSubmit}
+              style={{width: "50%", color: "white", display: 'flex', flexDirection: 'column'}}>
             <label htmlFor="name">Name:</label>
             <input
                 type="text"
@@ -89,20 +70,22 @@ const PizzaCreator = () => {
                 type="number"
                 name="price"
                 id="price"
+                step="0.01"
             />
 
 
-            <label htmlFor="img">Upload Image</label>
+            <label htmlFor="image">Upload Image</label>
             <input
                 type="file"
-                name="img"
-                id="img"
+                name="image"
+                id="image"
                 accept=".jpeg, .png, .jpg"
             />
 
             {allergens.map((allergen) => (
-                <Fragment key={allergen._id}>
-                    <input onChange={handleCheckboxChange} type="checkbox" id={allergen.name} name="allergens" value={allergen._id} />
+                <Fragment key={allergen.id}>
+                    <input onChange={handleCheckboxChange} type="checkbox" id={allergen.name} name="allergens"
+                           value={allergen.id}/>
                     <label htmlFor={allergen.name}>{allergen.name}</label>
                 </Fragment>
             ))}
@@ -113,17 +96,3 @@ const PizzaCreator = () => {
 }
 
 export default PizzaCreator;
-
-
-function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        fileReader.onload = () => {
-            resolve(fileReader.result)
-        };
-        fileReader.onerror = (error) => {
-            reject(error)
-        }
-    })
-}
