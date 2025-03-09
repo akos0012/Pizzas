@@ -1,5 +1,8 @@
 FROM maven:3.8.4-openjdk-17-slim AS build
 
+ARG DB_PASSWORD
+ENV DB_PASSWORD=${DB_PASSWORD}
+
 WORKDIR /app
 
 COPY pom.xml .
