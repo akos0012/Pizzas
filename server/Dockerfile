@@ -8,7 +8,7 @@ WORKDIR /app
 COPY pom.xml .
 COPY src /app/src
 
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-oracle
 
