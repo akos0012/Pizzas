@@ -37,14 +37,11 @@ const UserLayout = () => {
                             <li>
                                 <Link to="/cart" className="link">Cart</Link>
                             </li>
-                            <li>
-                                <Link to="/admin" className="link">Admin</Link>
-                            </li>
                         </ul>
                     </div>
                 </nav>
                 <div className="hide-dropdown">
-                <Dropdown isVisible={isDropdownVisible} />
+                    <Dropdown isVisible={isDropdownVisible} />
                 </div>
                 <div className="outlet">
                     <Outlet />
