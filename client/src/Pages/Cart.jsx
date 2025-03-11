@@ -7,13 +7,14 @@ import Popup from 'reactjs-popup';
 import Loading from "../Components/Loading";
 import {useNavigate} from "react-router-dom";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 const getPizzaByID = (id) => {
-    return fetch(`/api/pizzas/${id}`).then((res) => res.json());
+    return fetch(`${serverUrl}/api/pizzas/${id}`).then((res) => res.json());
 }
 
 const createOrder = (order) => {
-    return fetch(`/api/orders`, {
+    return fetch(`${serverUrl}/api/orders`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",

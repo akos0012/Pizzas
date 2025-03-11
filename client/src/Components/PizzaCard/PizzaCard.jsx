@@ -6,8 +6,10 @@ import {useInView} from "react-intersection-observer";
 import {motion, useAnimation} from "framer-motion";
 import animations from "../../Animations";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 const getImageById = async (id) => {
-    const res = await fetch(`/api/images/${id}`);
+    const res = await fetch(`${serverUrl}/api/images/${id}`);
     const blob = await res.blob();
     return URL.createObjectURL(blob);
 }

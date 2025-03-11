@@ -1,20 +1,8 @@
-FROM maven:3.8.4-openjdk-17-slim AS build
-
-ARG DB_PASSWORD
-ENV DB_PASSWORD=${DB_PASSWORD}
+FROM openjdk:17-jdk-oracle
 
 WORKDIR /app
 
-COPY pom.xml .
-COPY src /app/src
-
-RUN mvn clean package -DskipTests
-
-FROM openjdk:17-jdk-oracle
-
-WORKDIR /opt/app
-
-COPY --from=build /app/target/server-0.0.1-SNAPSHOT.jar app.jar
+COPY target/server-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 

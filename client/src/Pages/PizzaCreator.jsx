@@ -1,14 +1,16 @@
 import {useState, useEffect, Fragment} from "react";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 const createPizza = (pizza) => {
-    return fetch(`/api/pizzas`, {
+    return fetch(`${serverUrl}/api/pizzas`, {
         method: "POST",
         body: pizza,
     });
 }
 
 const fetchAllergen = () => {
-    return fetch(`/api/allergens`).then((res) => res.json());
+    return fetch(`${serverUrl}/api/allergens`).then((res) => res.json());
 }
 
 const PizzaCreator = () => {

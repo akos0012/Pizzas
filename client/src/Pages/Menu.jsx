@@ -7,8 +7,11 @@ import {motion, useAnimation} from "framer-motion";
 import animations from "../Animations"
 import Loading from "../Components/Loading";
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
+
 const fetchPizzas = async () => {
-    const res = await fetch(`/api/pizzas`);
+    const res = await fetch(`${serverUrl}/api/pizzas`);
     return await res.json();
 }
 
