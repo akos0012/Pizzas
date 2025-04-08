@@ -37,9 +37,6 @@ const UserLayout = () => {
                             <li>
                                 <Link to="/cart" className="link">Cart</Link>
                             </li>
-                            <li>
-                                <Link to="/admin" className="link">Admin</Link>
-                            </li>
                         </ul>
                     </div>
                 </nav>
