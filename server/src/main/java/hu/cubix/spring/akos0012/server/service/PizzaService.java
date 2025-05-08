@@ -1,6 +1,7 @@
 package hu.cubix.spring.akos0012.server.service;
 
 import hu.cubix.spring.akos0012.server.dto.pizza.PizzaCreateDTO;
+import hu.cubix.spring.akos0012.server.dto.pizza.PizzaFilterDTO;
 import hu.cubix.spring.akos0012.server.dto.pizza.PizzaResponseDTO;
 import hu.cubix.spring.akos0012.server.mapper.PizzaMapper;
 import hu.cubix.spring.akos0012.server.model.Allergen;
@@ -10,12 +11,14 @@ import hu.cubix.spring.akos0012.server.repository.AllergenRepository;
 import hu.cubix.spring.akos0012.server.repository.PizzaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +71,20 @@ public class PizzaService {
         Pizza pizza = pizzaRepository.findByIdWithAllergens(id)
                 .orElseThrow(() -> new EntityNotFoundException("Pizza not found with ID: " + id));
         return pizzaMapper.pizzaToResponseDto(pizza);
+    }
+
+    public List<PizzaResponseDTO> findPizzaByCriteria(PizzaFilterDTO example, Pageable pageable) {
+        String pizzaName = example.pizzaName();
+        List<Long> allergenIds = example.allergenIds();
+
+        Specification<Pizza> spec = Specification.where(null);
+
+        if (StringUtils.hasText(pizzaName))
+            spec = spec.and(PizzaSpecification.hasPizza(pizzaName));
+        if (allergenIds != null && !allergenIds.isEmpty())
+            spec = spec.and(PizzaSpecification.doesNotContainAllergens(allergenIds));
+
+        return pizzaMapper.pizzasToResponseDTOs(pizzaRepository.findAll(spec, pageable).getContent());
     }
 
     @Transactional

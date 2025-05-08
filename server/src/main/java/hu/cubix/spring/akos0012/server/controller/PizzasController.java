@@ -1,17 +1,16 @@
 package hu.cubix.spring.akos0012.server.controller;
 
 import hu.cubix.spring.akos0012.server.dto.pizza.PizzaCreateDTO;
+import hu.cubix.spring.akos0012.server.dto.pizza.PizzaFilterDTO;
 import hu.cubix.spring.akos0012.server.dto.pizza.PizzaResponseDTO;
-import hu.cubix.spring.akos0012.server.mapper.PizzaMapper;
 import hu.cubix.spring.akos0012.server.service.PizzaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -35,5 +34,10 @@ public class PizzasController {
     public ResponseEntity<PizzaResponseDTO> createPizza(@ModelAttribute @Valid PizzaCreateDTO pizzaDTO) {
         PizzaResponseDTO newPizza = pizzaService.createPizza(pizzaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newPizza);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<PizzaResponseDTO>> searchPizza(@RequestBody PizzaFilterDTO pizzaFilterDTO, Pageable pageable) {
+        return ResponseEntity.ok(pizzaService.findPizzaByCriteria(pizzaFilterDTO, pageable));
     }
 }

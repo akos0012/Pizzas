@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import PizzaCard from "../Components/PizzaCard";
+import PizzaFilter from "../Components/PizzaFilter";
 import {useNavigate} from "react-router-dom";
 import "./css/Menu.css"
 import {useInView} from "react-intersection-observer";
@@ -10,8 +11,14 @@ import Loading from "../Components/Loading";
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 
-const fetchPizzas = async () => {
-    const res = await fetch(`${serverUrl}/api/pizzas`);
+const fetchPizzas = async (filterData) => {
+    const res = await fetch(`${serverUrl}/api/pizzas/search`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(filterData)
+    });
     return await res.json();
 }
 
@@ -41,8 +48,22 @@ const PizzaList = () => {
         navigate("/")
     }
 
+    const handleSearch = (term) => {
+        setLoading(true);
+        const filter = {
+            pizzaName: term
+        };
+
+        fetchPizzas(filter)
+            .then((filteredPizzas) => {
+                setPizzas(filteredPizzas);
+            })
+            .finally(() => setLoading(false));
+    }
+
     useEffect(() => {
-        fetchPizzas()
+        const emptyFilter = {};
+        fetchPizzas(emptyFilter)
             .then((pizzas) => {
                 setPizzas(pizzas);
                 filterCartContent(pizzas);
@@ -69,6 +90,7 @@ const PizzaList = () => {
                 <p variants={fadeInFromBelow} transition={{delay: 0.5}}>Our menu invites you on a journey of tantalizing
                     flavors and culinary delights, where every dish tells a story of passion and craftsmanship.</p>
             </motion.div>
+            <PizzaFilter onSearch={handleSearch}/>
             {loading ? (
                 <Loading/>
             ) : (
