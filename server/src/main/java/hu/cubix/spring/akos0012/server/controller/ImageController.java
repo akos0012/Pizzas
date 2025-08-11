@@ -2,7 +2,6 @@ package hu.cubix.spring.akos0012.server.controller;
 
 import hu.cubix.spring.akos0012.server.dto.image.ImageResponseDTO;
 import hu.cubix.spring.akos0012.server.service.ImageService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/images")
 public class ImageController {
-    @Autowired
-    private ImageService imageService;
+
+    private final ImageService imageService;
+
+    public ImageController(ImageService imageService) {
+        this.imageService = imageService;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> findById(@PathVariable Long id) {

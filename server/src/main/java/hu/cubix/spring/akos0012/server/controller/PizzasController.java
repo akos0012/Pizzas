@@ -5,7 +5,6 @@ import hu.cubix.spring.akos0012.server.dto.pizza.PizzaFilterDTO;
 import hu.cubix.spring.akos0012.server.dto.pizza.PizzaResponseDTO;
 import hu.cubix.spring.akos0012.server.service.PizzaService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +16,11 @@ import java.util.List;
 @RequestMapping("/api/pizzas")
 public class PizzasController {
 
-    @Autowired
-    private PizzaService pizzaService;
+    private final PizzaService pizzaService;
+
+    public PizzasController(PizzaService pizzaService) {
+        this.pizzaService = pizzaService;
+    }
 
     @GetMapping
     public ResponseEntity<List<PizzaResponseDTO>> findAll() {

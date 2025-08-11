@@ -5,7 +5,6 @@ import hu.cubix.spring.akos0012.server.mapper.ImageMapper;
 import hu.cubix.spring.akos0012.server.model.Image;
 import hu.cubix.spring.akos0012.server.repository.ImageRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,11 +13,13 @@ import java.io.IOException;
 @Service
 public class ImageService {
 
-    @Autowired
-    private ImageRepository imageRepository;
+    private final ImageRepository imageRepository;
+    private final ImageMapper imageMapper;
 
-    @Autowired
-    private ImageMapper imageMapper;
+    public ImageService(ImageRepository imageRepository, ImageMapper imageMapper) {
+        this.imageRepository = imageRepository;
+        this.imageMapper = imageMapper;
+    }
 
     public ImageResponseDTO findById(Long id) {
         Image image = imageRepository.findById(id)

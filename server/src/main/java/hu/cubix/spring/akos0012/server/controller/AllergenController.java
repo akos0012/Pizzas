@@ -2,15 +2,11 @@ package hu.cubix.spring.akos0012.server.controller;
 
 import hu.cubix.spring.akos0012.server.dto.allergen.AllergenCreateDTO;
 import hu.cubix.spring.akos0012.server.dto.allergen.AllergenResponseDTO;
-import hu.cubix.spring.akos0012.server.mapper.AllergenMapper;
-import hu.cubix.spring.akos0012.server.model.Allergen;
 import hu.cubix.spring.akos0012.server.service.AllergenService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -18,8 +14,11 @@ import java.util.List;
 @RequestMapping("/api/allergens")
 public class AllergenController {
 
-    @Autowired
-    private AllergenService allergenService;
+    private final AllergenService allergenService;
+
+    public AllergenController(AllergenService allergenService) {
+        this.allergenService = allergenService;
+    }
 
     @GetMapping
     private ResponseEntity<List<AllergenResponseDTO>> findAll() {

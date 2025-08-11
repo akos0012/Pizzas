@@ -16,11 +16,13 @@ import java.util.Optional;
 @Service
 public class AllergenService {
 
-    @Autowired
-    private AllergenRepository allergenRepository;
+    private final AllergenRepository allergenRepository;
+    private final AllergenMapper allergenMapper;
 
-    @Autowired
-    private AllergenMapper allergenMapper;
+    public AllergenService(AllergenRepository allergenRepository, AllergenMapper allergenMapper) {
+        this.allergenRepository = allergenRepository;
+        this.allergenMapper = allergenMapper;
+    }
 
     public Allergen save(Allergen allergen) {
         return allergenRepository.save(allergen);

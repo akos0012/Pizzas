@@ -10,7 +10,6 @@ import hu.cubix.spring.akos0012.server.model.Pizza;
 import hu.cubix.spring.akos0012.server.repository.AllergenRepository;
 import hu.cubix.spring.akos0012.server.repository.PizzaRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
@@ -28,17 +27,20 @@ import java.util.stream.Collectors;
 @Service
 public class PizzaService {
 
-    @Autowired
-    PizzaRepository pizzaRepository;
+    private final PizzaRepository pizzaRepository;
+    private final PizzaMapper pizzaMapper;
+    private final AllergenRepository allergenRepository;
+    private final ImageService imageService;
 
-    @Autowired
-    PizzaMapper pizzaMapper;
-
-    @Autowired
-    AllergenRepository allergenRepository;
-
-    @Autowired
-    ImageService imageService;
+    public PizzaService(PizzaRepository pizzaRepository,
+                        PizzaMapper pizzaMapper,
+                        AllergenRepository allergenRepository,
+                        ImageService imageService) {
+        this.pizzaRepository = pizzaRepository;
+        this.pizzaMapper = pizzaMapper;
+        this.allergenRepository = allergenRepository;
+        this.imageService = imageService;
+    }
 
     public Pizza save(Pizza pizza) {
         return pizzaRepository.save(pizza);
