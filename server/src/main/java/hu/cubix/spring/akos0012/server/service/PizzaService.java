@@ -9,6 +9,7 @@ import hu.cubix.spring.akos0012.server.model.Image;
 import hu.cubix.spring.akos0012.server.model.Pizza;
 import hu.cubix.spring.akos0012.server.repository.AllergenRepository;
 import hu.cubix.spring.akos0012.server.repository.PizzaRepository;
+import hu.cubix.spring.akos0012.server.service.specification.PizzaSpecification;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
