@@ -20,6 +20,7 @@
 
 .Layout .nav-menu {
     display: flex;
+    list-style: none;
 }
 
 .Layout .container {
@@ -150,19 +151,19 @@
     max-height: 61px;
 }
 
-@media (max-width:1200px) {
+@media (max-width: 1200px) {
     .footer-info img {
         width: 45px;
     }
 }
 
-@media (max-width:920px) {
+@media (max-width: 920px) {
     .footer-info .logo {
         justify-content: flex-start;
     }
 }
 
-@media (max-width:720px) {
+@media (max-width: 720px) {
     .footer {
         text-align: left;
         padding: 5%;
@@ -187,7 +188,7 @@
     }
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
     .footer-info img {
         width: 35px;
     }
