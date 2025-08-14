@@ -10,7 +10,6 @@ import Loading from "../Components/Loading";
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
-
 const fetchPizzas = async (filterData) => {
     const res = await fetch(`${serverUrl}/api/pizzas/search`, {
         method: "POST",
@@ -19,6 +18,11 @@ const fetchPizzas = async (filterData) => {
         },
         body: JSON.stringify(filterData)
     });
+    return await res.json();
+}
+
+const fetchAllergens = async () => {
+    const res = await fetch(`${serverUrl}/api/allergens`);
     return await res.json();
 }
 
@@ -37,6 +41,7 @@ const useSectionAnimation = (threshold) => {
 
 const PizzaList = () => {
     const [pizzas, setPizzas] = useState([]);
+    const [allergens, setAllergens] = useState([]);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
 
@@ -48,10 +53,11 @@ const PizzaList = () => {
         navigate("/")
     }
 
-    const handleSearch = (term) => {
+    const handleSearch = (term, allergenIds) => {
         setLoading(true);
         const filter = {
-            pizzaName: term
+            pizzaName: term,
+            allergenIds: allergenIds
         };
 
         fetchPizzas(filter)
@@ -62,13 +68,24 @@ const PizzaList = () => {
     }
 
     useEffect(() => {
-        const emptyFilter = {};
-        fetchPizzas(emptyFilter)
-            .then((pizzas) => {
+        const loadData = async () => {
+            try {
+                const [allergens, pizzas] = await Promise.all([
+                    fetchAllergens(),
+                    fetchPizzas({})
+                ]);
+
+                setAllergens(allergens);
                 setPizzas(pizzas);
                 filterCartContent(pizzas);
+            } finally {
                 setLoading(false);
-            })
+            }
+        };
+
+        loadData().catch(error => {
+            console.error("Error loading data:", error);
+        });
     }, []);
 
     return (
@@ -90,7 +107,7 @@ const PizzaList = () => {
                 <p variants={fadeInFromBelow} transition={{delay: 0.5}}>Our menu invites you on a journey of tantalizing
                     flavors and culinary delights, where every dish tells a story of passion and craftsmanship.</p>
             </motion.div>
-            <PizzaFilter onSearch={handleSearch}/>
+            <PizzaFilter onSearch={handleSearch} allergenData={allergens}/>
             {loading ? (
                 <Loading/>
             ) : (

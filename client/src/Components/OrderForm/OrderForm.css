@@ -4,7 +4,7 @@
     margin: auto;
 }
 
-.onePageFrame h1 {
+.order-form h1 {
     color: #fac564;
     margin: 0;
     font-size: 20px;
@@ -105,8 +105,7 @@
 .successMessage h2 {
     font-size: 30px;
     margin-bottom: 0;
-    font-family: "Josefin Sans", Arial, sans-serif;
-    ;
+    font-family: "Josefin Sans", Arial, sans-serif;;
 }
 
 .back-to-menu-button {
@@ -129,19 +128,23 @@
     transition: 0.7s;
 }
 
-@media (max-width:900px) {
+.popup-content {
+    max-width: 900px;
+}
+
+@media (max-width: 900px) {
     .popup-content {
         width: 80%;
     }
 }
 
-@media (max-width:640px) {
+@media (max-width: 640px) {
     .check-mark {
         display: none;
     }
 }
 
-@media (max-width:480px) {
+@media (max-width: 480px) {
     .successMessage {
         padding: 10px;
     }

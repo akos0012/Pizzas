@@ -27,7 +27,7 @@ const OrderForm = ({onSubmit, closeModal, loading, success, handleBackToMenu}) =
     }
 
     return (
-        <div className="onePageFrame">
+        <div className="onePageFrame order-form">
             <div className="closeButton" onClick={closeModal}><XSquare/></div>
             {loading ? (
                 <Loading/>

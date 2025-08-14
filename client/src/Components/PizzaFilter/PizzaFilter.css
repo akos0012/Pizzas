@@ -4,6 +4,11 @@
     display: flex;
     align-items: center;
     padding: 15px;
+    justify-content: space-between;
+}
+
+.filter-search {
+    width: 350px;
 }
 
 .filter-search form {
@@ -12,7 +17,7 @@
 
 .filter-search-input {
     height: 40px;
-    width: 300px;
+    width: 100%;
     padding: 0 10px;
     font-size: 16px;
     font-family: "Josefin Sans", Arial, sans-serif;
@@ -36,4 +41,36 @@
     background-color: #ffaf1b;
     border-color: #ffaf1b;
     transition: .3s all ease;
+}
+
+.filter-search button svg {
+    font-size: 20px;
+}
+
+.filter-allergen button svg {
+    font-size: 32px;
+}
+
+.filter-allergen {
+    display: flex;
+    height: 40px;
+}
+
+.filter-allergen button {
+    border: 1px solid #fac564;
+    border-radius: 4px;
+    background-color: #fac564;
+    cursor: pointer;
+}
+
+.filter-allergen button:hover {
+    background-color: #ffaf1b;
+    border-color: #ffaf1b;
+    transition: .3s all ease;
+}
+
+@media (max-width: 460px) {
+    .filter-search {
+        width: 60%;
+    }
 }

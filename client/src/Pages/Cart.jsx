@@ -57,6 +57,14 @@ const Cart = () => {
         fetchOrders();
     }, []);
 
+    useEffect(() => {
+        if (openOrderPopup) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [openOrderPopup]);
+
     const closeModal = () => setOpenOrderPopup(false);
 
     const decreaseQuantity = (id) => {
@@ -154,7 +162,8 @@ const Cart = () => {
                 orderButton={handleOrderButton}
                 removeButton={handleRemoveOrder}
             />
-            <Popup open={openOrderPopup} onClose={closeModal} position={"center center"} closeOnDocumentClick={false}>
+            <Popup open={openOrderPopup} onClose={closeModal} position={"center center"} closeOnDocumentClick={false}
+                   modal>
                 <OrderForm onSubmit={onSubmit} loading={modalLoading} closeModal={closeModal}
                            handleBackToMenu={handleBackToMenu} success={success}/>
             </Popup>

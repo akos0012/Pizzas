@@ -1,0 +1,127 @@
+.onePageFrame {
+    background-color: black;
+    padding: 15px 20px 20px 20px;
+    margin: auto;
+}
+
+.allergen-filter h1 {
+    font-family: "Josefin Sans", Arial, sans-serif;
+    color: #fac564;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.allergen-filter p {
+    color: gray;
+    margin-bottom: 40px;
+}
+
+.allergen-filter .allergen-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    max-height: 40vh;
+    overflow-y: auto;
+}
+
+.allergen-filter .allergen-button {
+    flex: 1 1 auto;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 50px;
+    padding: 0 12px;
+    font-size: 20px;
+    border: none;
+    border-radius: 16px;
+    background-color: #fac5645c;
+    color: #fac564;
+    transition: 0.1s;
+}
+
+.allergen-filter button.selected {
+    border-color: #fac56421;
+    background-color: #fac56421;
+    color: #fac56461;
+    transition: 0.1s;
+}
+
+.allergen-filter .apply-button {
+    cursor: pointer;
+    margin-top: 30px;
+    min-height: 40px;
+    border: none;
+    font-size: 20px;
+    color: #fac564;
+    background-color: #fac5645c;
+    width: 100%;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.allergen-filter .apply-button:hover {
+    background-color: #fac56485;
+}
+
+.allergen-filter .apply-button:disabled {
+    background-color: #fac56423;
+    color: #fac56480;
+    cursor: default;
+    transition: 0.3s;
+}
+
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+    }
+
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+    }
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    max-width: 900px;
+}
+
+.allergen-filter .closeButton {
+    color: #fac564;
+    font-size: 35px;
+    cursor: pointer;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: black;
+    height: 35px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.allergen-filter .closeButton:hover {
+    color: rgb(253, 67, 67);
+    transition: 0.7s;
+}
+
+@media (max-width: 900px) {
+    .popup-content {
+        width: 80%;
+    }
+}
+
+@media (max-height: 500px) {
+    .allergen-filter .allergen-buttons {
+        max-height: 30vh;
+    }
+}
